@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MVCSample.Models.P_GET_REGISTER_Result>
+
+@{
+    ViewBag.Title = "booklist";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+
+<h2>booklist</h2>
+
+<p>
+    @Html.ActionLink("Create New", "bookregister")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOK_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTHOR_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PUBLISHER_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDITION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SEMESTER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMBER_OF_COPIES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMAGE)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (@Html.DisplayFor(modelItem => item.SEMESTER).ToString() == "1")
+        {
+            @:<tr style="background-color:greenyellow">
+        }
+        else{
+            @:<tr>
+        }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BOOK_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AUTHOR_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PUBLISHER_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EDITION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SEMESTER)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NUMBER_OF_COPIES)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IMAGE)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BOOK_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BOOK_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BOOK_ID }, new { onclick = "return confirmation('are you sure you want to delete this')" }) 
+                </td>
+            @:</tr>
+}
+
+</table>

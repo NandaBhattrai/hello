@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="managementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ISSUE">
+          <Key>
+            <PropertyRef Name="ISSUE_ID" />
+          </Key>
+          <Property Name="ISSUE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STUDENT_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SEMESTER" Type="int" Nullable="false" />
+          <Property Name="BOOK_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISSUE_DATE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_BREGISTER">
+          <Key>
+            <PropertyRef Name="BOOK_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOOK_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AUTHOR_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PUBLISHER_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EDITION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="SEMESTER" Type="int" Nullable="false" />
+          <Property Name="NUMBER_OF_COPIES" Type="int" Nullable="false" />
+          <Property Name="BOOK_STATUS" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="IMAGE" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TBL_COUNTBOOK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOOK_ID" Type="int" Nullable="false" />
+          <Property Name="BOOK_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TOTAL_COUNT" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_PUBLISHER">
+          <Key>
+            <PropertyRef Name="PUBLISHER_ID" />
+          </Key>
+          <Property Name="PUBLISHER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PUBLISHER_NAME" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SIGNUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SREGISTER">
+          <Key>
+            <PropertyRef Name="STUDENT_ID" />
+          </Key>
+          <Property Name="STUDENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DATEOFBIRTH" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AGE" Type="int" Nullable="false" />
+          <Property Name="GENDER" Type="varchar" MaxLength="50" />
+          <Property Name="SEM" Type="int" Nullable="false" />
+          <Property Name="STUDENT_STATUS" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="IMAGE" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Function Name="P_DELETE_REGISTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_BOOK_ID" Type="int" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="P_GET_ISSUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_GET_PUBLISHER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_GET_REGISTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_GET_STUDENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_ISSUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_STUDENT_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_SEMESTER" Type="int" Mode="In" />
+          <Parameter Name="P_BOOK_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_ISSUE_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_RETURN_DATE" Type="nvarchar" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="P_PUBLISHER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PUBLISHER_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="P_REGISTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_BOOK_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_AUTHOR_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_PUBLISHER_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_EDITION" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_SEMESTER" Type="int" Mode="In" />
+          <Parameter Name="P_NUMBER_OF_COPIES" Type="int" Mode="In" />
+          <Parameter Name="P_IMAGE" Type="nvarchar" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="P_STUDENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_FIRST_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_ADDRESS" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_DATEOFBIRTH" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_PHONE" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_AGE" Type="int" Mode="In" />
+          <Parameter Name="P_GENDER" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_SEM" Type="int" Mode="In" />
+          <Parameter Name="P_IMAGE" Type="nvarchar" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="P_UPDATE_REGISTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_BOOK_ID" Type="int" Mode="In" />
+          <Parameter Name="P_BOOK_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_AUTHOR_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_PUBLISHER_NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_EDITION" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_SEMESTER" Type="int" Mode="In" />
+          <Parameter Name="P_NUMBER_OF_COPIES" Type="int" Mode="In" />
+          <Parameter Name="P_IMAGE" Type="nvarchar" Mode="In" />
+          <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="managementModelStoreContainer">
+          <EntitySet Name="ISSUE" EntityType="Self.ISSUE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_BREGISTER" EntityType="Self.TBL_BREGISTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_COUNTBOOK" EntityType="Self.TBL_COUNTBOOK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PUBLISHER" EntityType="Self.TBL_PUBLISHER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SIGNUP" EntityType="Self.TBL_SIGNUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SREGISTER" EntityType="Self.TBL_SREGISTER" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="managementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ISSUE">
+          <Key>
+            <PropertyRef Name="ISSUE_ID" />
+          </Key>
+          <Property Name="ISSUE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STUDENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SEMESTER" Type="Int32" Nullable="false" />
+          <Property Name="BOOK_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISSUE_DATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_BREGISTER">
+          <Key>
+            <PropertyRef Name="BOOK_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOOK_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AUTHOR_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PUBLISHER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EDITION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SEMESTER" Type="Int32" Nullable="false" />
+          <Property Name="NUMBER_OF_COPIES" Type="Int32" Nullable="false" />
+          <Property Name="BOOK_STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_COUNTBOOK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOOK_ID" Type="Int32" Nullable="false" />
+          <Property Name="BOOK_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOTAL_COUNT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_PUBLISHER">
+          <Key>
+            <PropertyRef Name="PUBLISHER_ID" />
+          </Key>
+          <Property Name="PUBLISHER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PUBLISHER_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SIGNUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SREGISTER">
+          <Key>
+            <PropertyRef Name="STUDENT_ID" />
+          </Key>
+          <Property Name="STUDENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATEOFBIRTH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AGE" Type="Int32" Nullable="false" />
+          <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEM" Type="Int32" Nullable="false" />
+          <Property Name="STUDENT_STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="managementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ISSUEs" EntityType="Self.ISSUE" />
+          <EntitySet Name="TBL_BREGISTER" EntityType="Self.TBL_BREGISTER" />
+          <EntitySet Name="TBL_COUNTBOOK" EntityType="Self.TBL_COUNTBOOK" />
+          <EntitySet Name="TBL_PUBLISHER" EntityType="Self.TBL_PUBLISHER" />
+          <EntitySet Name="TBL_SIGNUP" EntityType="Self.TBL_SIGNUP" />
+          <EntitySet Name="TBL_SREGISTER" EntityType="Self.TBL_SREGISTER" />
+          <FunctionImport Name="P_REGISTER">
+            <Parameter Name="P_BOOK_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_AUTHOR_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_PUBLISHER_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_EDITION" Mode="In" Type="String" />
+            <Parameter Name="P_SEMESTER" Mode="In" Type="Int32" />
+            <Parameter Name="P_NUMBER_OF_COPIES" Mode="In" Type="Int32" />
+            <Parameter Name="P_IMAGE" Mode="In" Type="String" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_GET_REGISTER" ReturnType="Collection(managementModel.P_GET_REGISTER_Result)" />
+          <FunctionImport Name="P_STUDENT">
+            <Parameter Name="P_FIRST_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_ADDRESS" Mode="In" Type="String" />
+            <Parameter Name="P_DATEOFBIRTH" Mode="In" Type="String" />
+            <Parameter Name="P_PHONE" Mode="In" Type="String" />
+            <Parameter Name="P_AGE" Mode="In" Type="Int32" />
+            <Parameter Name="P_GENDER" Mode="In" Type="String" />
+            <Parameter Name="P_SEM" Mode="In" Type="Int32" />
+            <Parameter Name="P_IMAGE" Mode="In" Type="String" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_GET_STUDENT" ReturnType="Collection(managementModel.P_GET_STUDENT_Result)" />
+          <FunctionImport Name="P_GET_PUBLISHER" ReturnType="Collection(managementModel.P_GET_PUBLISHER_Result)" />
+          <FunctionImport Name="P_PUBLISHER">
+            <Parameter Name="P_PUBLISHER_NAME" Mode="In" Type="String" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_GET_ISSUE" ReturnType="Collection(managementModel.P_GET_ISSUE_Result)" />
+          <FunctionImport Name="P_ISSUE">
+            <Parameter Name="P_STUDENT_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_SEMESTER" Mode="In" Type="Int32" />
+            <Parameter Name="P_BOOK_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_ISSUE_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_RETURN_DATE" Mode="In" Type="String" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_DELETE_REGISTER">
+            <Parameter Name="P_BOOK_ID" Mode="In" Type="Int32" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_UPDATE_REGISTER">
+            <Parameter Name="P_BOOK_ID" Mode="In" Type="Int32" />
+            <Parameter Name="P_BOOK_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_AUTHOR_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_PUBLISHER_NAME" Mode="In" Type="String" />
+            <Parameter Name="P_EDITION" Mode="In" Type="String" />
+            <Parameter Name="P_SEMESTER" Mode="In" Type="Int32" />
+            <Parameter Name="P_NUMBER_OF_COPIES" Mode="In" Type="Int32" />
+            <Parameter Name="P_IMAGE" Mode="In" Type="String" />
+            <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="P_GET_REGISTER_Result">
+          <Property Type="Int32" Name="BOOK_ID" Nullable="false" />
+          <Property Type="String" Name="BOOK_NAME" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="AUTHOR_NAME" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PUBLISHER_NAME" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="EDITION" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="SEMESTER" Nullable="false" />
+          <Property Type="Int32" Name="NUMBER_OF_COPIES" Nullable="false" />
+          <Property Type="String" Name="IMAGE" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="P_GET_STUDENT_Result">
+          <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ADDRESS" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="DATEOFBIRTH" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PHONE" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="AGE" Nullable="false" />
+          <Property Type="String" Name="GENDER" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SEM" Nullable="false" />
+          <Property Type="String" Name="STUDENT_STATUS" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="IMAGE" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="P_GET_PUBLISHER_Result">
+          <Property Type="Int32" Name="PUBLISHER_ID" Nullable="false" />
+          <Property Type="String" Name="PUBLISHER_NAME" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="P_GET_ISSUE_Result">
+          <Property Type="Int32" Name="ISSUE_ID" Nullable="false" />
+          <Property Type="String" Name="STUDENT_NAME" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SEMESTER" Nullable="false" />
+          <Property Type="String" Name="BOOK_NAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ISSUE_DATE" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="RETURN_DATE" Nullable="false" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="managementModelStoreContainer" CdmEntityContainer="managementEntities">
+          <EntitySetMapping Name="ISSUEs">
+            <EntityTypeMapping TypeName="managementModel.ISSUE">
+              <MappingFragment StoreEntitySet="ISSUE">
+                <ScalarProperty Name="ISSUE_ID" ColumnName="ISSUE_ID" />
+                <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="BOOK_NAME" ColumnName="BOOK_NAME" />
+                <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+                <ScalarProperty Name="RETURN_DATE" ColumnName="RETURN_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_BREGISTER">
+            <EntityTypeMapping TypeName="managementModel.TBL_BREGISTER">
+              <MappingFragment StoreEntitySet="TBL_BREGISTER">
+                <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+                <ScalarProperty Name="BOOK_NAME" ColumnName="BOOK_NAME" />
+                <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
+                <ScalarProperty Name="PUBLISHER_NAME" ColumnName="PUBLISHER_NAME" />
+                <ScalarProperty Name="EDITION" ColumnName="EDITION" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="NUMBER_OF_COPIES" ColumnName="NUMBER_OF_COPIES" />
+                <ScalarProperty Name="BOOK_STATUS" ColumnName="BOOK_STATUS" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_COUNTBOOK">
+            <EntityTypeMapping TypeName="managementModel.TBL_COUNTBOOK">
+              <MappingFragment StoreEntitySet="TBL_COUNTBOOK">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+                <ScalarProperty Name="BOOK_NAME" ColumnName="BOOK_NAME" />
+                <ScalarProperty Name="TOTAL_COUNT" ColumnName="TOTAL_COUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PUBLISHER">
+            <EntityTypeMapping TypeName="managementModel.TBL_PUBLISHER">
+              <MappingFragment StoreEntitySet="TBL_PUBLISHER">
+                <ScalarProperty Name="PUBLISHER_ID" ColumnName="PUBLISHER_ID" />
+                <ScalarProperty Name="PUBLISHER_NAME" ColumnName="PUBLISHER_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SIGNUP">
+            <EntityTypeMapping TypeName="managementModel.TBL_SIGNUP">
+              <MappingFragment StoreEntitySet="TBL_SIGNUP">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SREGISTER">
+            <EntityTypeMapping TypeName="managementModel.TBL_SREGISTER">
+              <MappingFragment StoreEntitySet="TBL_SREGISTER">
+                <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DATEOFBIRTH" ColumnName="DATEOFBIRTH" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="SEM" ColumnName="SEM" />
+                <ScalarProperty Name="STUDENT_STATUS" ColumnName="STUDENT_STATUS" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_REGISTER" FunctionName="managementModel.Store.P_REGISTER" />
+          <FunctionImportMapping FunctionImportName="P_GET_REGISTER" FunctionName="managementModel.Store.P_GET_REGISTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="managementModel.P_GET_REGISTER_Result">
+                <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+                <ScalarProperty Name="BOOK_NAME" ColumnName="BOOK_NAME" />
+                <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
+                <ScalarProperty Name="PUBLISHER_NAME" ColumnName="PUBLISHER_NAME" />
+                <ScalarProperty Name="EDITION" ColumnName="EDITION" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="NUMBER_OF_COPIES" ColumnName="NUMBER_OF_COPIES" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_STUDENT" FunctionName="managementModel.Store.P_STUDENT" />
+          <FunctionImportMapping FunctionImportName="P_GET_STUDENT" FunctionName="managementModel.Store.P_GET_STUDENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="managementModel.P_GET_STUDENT_Result">
+                <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DATEOFBIRTH" ColumnName="DATEOFBIRTH" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="SEM" ColumnName="SEM" />
+                <ScalarProperty Name="STUDENT_STATUS" ColumnName="STUDENT_STATUS" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_GET_PUBLISHER" FunctionName="managementModel.Store.P_GET_PUBLISHER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="managementModel.P_GET_PUBLISHER_Result">
+                <ScalarProperty Name="PUBLISHER_ID" ColumnName="PUBLISHER_ID" />
+                <ScalarProperty Name="PUBLISHER_NAME" ColumnName="PUBLISHER_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_PUBLISHER" FunctionName="managementModel.Store.P_PUBLISHER" />
+          <FunctionImportMapping FunctionImportName="P_GET_ISSUE" FunctionName="managementModel.Store.P_GET_ISSUE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="managementModel.P_GET_ISSUE_Result">
+                <ScalarProperty Name="ISSUE_ID" ColumnName="ISSUE_ID" />
+                <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="BOOK_NAME" ColumnName="BOOK_NAME" />
+                <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+                <ScalarProperty Name="RETURN_DATE" ColumnName="RETURN_DATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_ISSUE" FunctionName="managementModel.Store.P_ISSUE" />
+          <FunctionImportMapping FunctionImportName="P_DELETE_REGISTER" FunctionName="managementModel.Store.P_DELETE_REGISTER" />
+          <FunctionImportMapping FunctionImportName="P_UPDATE_REGISTER" FunctionName="managementModel.Store.P_UPDATE_REGISTER" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

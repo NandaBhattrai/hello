@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MVCSample.Models.P_GET_STUDENT_Result>
+
+@{
+    ViewBag.Title = "studentlist";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+
+<h2>studentlist</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FIRST_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEOFBIRTH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AGE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SEM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STUDENT_STATUS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMAGE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIRST_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEOFBIRTH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AGE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GENDER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SEM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STUDENT_STATUS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IMAGE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.STUDENT_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.STUDENT_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.STUDENT_ID })
+        </td>
+    </tr>
+}
+
+</table>
